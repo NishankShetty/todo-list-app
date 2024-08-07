@@ -1,0 +1,160 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1.3em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createTaskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: max-content;
+  margin: 0 auto;
+}
+
+.groupForm {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  gap: 2rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+label {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+#taskDes,
+#taskName {
+  font-size: 1.6rem;
+  /* min-width: 300px; */
+}
+
+input,
+textarea {
+  width: 20rem;
+}
+
+.DisplayContainer {
+  padding-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 auto;
+  width: max-content;
+}
+
+.unitTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
+  width: 20rem;
+  padding-bottom: 1rem;
+}
+
+.name {
+  padding-left: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.deleteBtn {
+  height: 3rem;
+  font-size: 1rem;
+  padding: 0 1rem;
+  background-color: red;
+}
+
+.deleteBtn:hover {
+  border-color: white;
+}
+
+.checkbox {
+  margin: 0 0 0 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media (max-width: 530px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+  #taskDes,
+  #taskName {
+    font-size: 1rem;
+  }
+  input,
+  textarea {
+    width: 10rem;
+  }
+  #groupForm {
+    gap: 1rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}
