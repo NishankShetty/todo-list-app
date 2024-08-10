@@ -1,15 +1,24 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 // import taskList from "../tasksList";
 import { TaskContext } from "../utils/taskList";
 
 const CreateTask = () => {
   const { taskList, addtask, updateTask, removeTask } = useContext(TaskContext);
 
+  const [error, setError] = useState("");
+
   const handleFormSubmission = (event) => {
     event.preventDefault();
-    addtask(event.target.taskName.value, event.target.taskDes.value);
-    event.target.taskName.value = "";
-    event.target.taskDes.value = "";
+    const name = event.target.taskName.value;
+    const des = event.target.taskDes.value;
+    if (!name) {
+      setError("Task Name Needed !");
+    } else {
+      setError("");
+      addtask(event.target.taskName.value, event.target.taskDes.value);
+      event.target.taskName.value = "";
+      event.target.taskDes.value = "";
+    }
   };
   console.log(taskList);
   return (
@@ -21,7 +30,7 @@ const CreateTask = () => {
             <label htmlFor="taskName">Name:</label>
             <input
               type="text"
-              placeholder="Enter Task Name"
+              placeholder="Required"
               name="taskName"
               id="taskName"
             ></input>
@@ -29,11 +38,12 @@ const CreateTask = () => {
           <div className="groupForm">
             <label htmlFor="taskDes"> Description:</label>
             <textarea
-              placeholder="Enter Task Description"
+              placeholder="Optional"
               name="taskDes"
               id="taskDes"
             ></textarea>
           </div>
+          {error && <p className="valError">{error}</p>}
           <button type="submit">Add Task</button>
         </form>
       </div>
