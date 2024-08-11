@@ -12,6 +12,8 @@ const DisplayTasks = () => {
     des: "",
   });
 
+  const [hoverTimeout, setHoverTimeout] = useState(null);
+
   const [editItem, setEditItem] = useState(null);
 
   const { taskList, addtask, updateTask, removeTask } = useContext(TaskContext);
@@ -59,13 +61,15 @@ const DisplayTasks = () => {
   const handleEditButton = (task, event) => {
     event.stopPropagation(); // Stopping the event from bubbling up.
     //handle the expansion if not expaneded expand or else leave the same
-    if (!expandedItems[task.id])
-      setExpandedItems((prev) => ({
-        ...prev,
-        [task.id]: !prev[task.id],
-      }));
+    // if (!expandedItems[task.id])
+    //   setExpandedItems((prev) => ({
+    //     ...prev,
+    //     [task.id]: !prev[task.id],
+    //   }));
     console.log(task.id);
-    if (editItem === task.id) expandedItems[task.id] = false;
+    editItem === task.id
+      ? (expandedItems[task.id] = false)
+      : (expandedItems[task.id] = true);
     setEditItem((prev) => (prev === task.id ? null : task.id));
     setEditData({ id: task.id, name: task.name, des: task.des });
   };
@@ -88,7 +92,35 @@ const DisplayTasks = () => {
 
   // console.log(JSON.stringify(editItem));
   // console.log(JSON.stringify(editData));
-  console.log(taskList);
+  // console.log(taskList);
+
+  const handleMouseEnterExpansion = (id) => {
+    if (editItem !== id) {
+      const timeout = setTimeout(
+        () =>
+          setExpandedItems((prev) => ({
+            ...prev,
+            [id]: !prev[id],
+          })),
+        550
+      );
+      console.log(expandedItems);
+      setHoverTimeout(timeout);
+    }
+  };
+
+  const handleMouseLeaveExpansion = (id) => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+    }
+    console.log(expandedItems);
+    if (editItem !== id) {
+      setExpandedItems((prev) => ({
+        ...prev,
+        [id]: false,
+      }));
+    }
+  };
 
   // console.log(expandedItems);
   return (
@@ -99,6 +131,8 @@ const DisplayTasks = () => {
             key={task.id}
             className={`unitTask ${expandedItems[task.id] ? "expanded" : ""}`}
             onClick={() => handleExpansionOnClick(task.id)}
+            onMouseEnter={() => handleMouseEnterExpansion(task.id)}
+            onMouseLeave={() => handleMouseLeaveExpansion(task.id)}
           >
             <div className="unitContainer">
               <input
