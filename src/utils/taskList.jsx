@@ -24,13 +24,13 @@ const TaskProvider = ({ children }) => {
   };
 
   const updateTask = (id, name, des) => {
-    setTaskList((prevList) => [
-      prevList.map((task) => {
-        task.name = task.id === id ? name : task.name;
-        task.des = task.id === id ? des : task.des;
-        return task;
-      }),
-    ]);
+    setTaskList((prevList) =>
+      prevList.map((task) => ({
+        id: task.id,
+        name: task.id === id ? name : task.name,
+        des: task.id === id ? des : task.des,
+      }))
+    );
   };
 
   return (
